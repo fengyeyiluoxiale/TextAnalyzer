@@ -1,4 +1,5 @@
-public class TextSpan {
+public class TextSpan
+{
 	// 普通文本
 	public static final int TYPE_TEXT = 0;
 	// 换行符
@@ -9,10 +10,13 @@ public class TextSpan {
 	// TextSpan的类型
 	private int type = 0;
 
-	public TextSpan(int type, int start, int end) {
+	public TextSpan(int type, int start, int end)
+	{
 		super();
-		if (start >= 0 && end >= 0) {
-			this.type = type;
+		if (start >= 0 && end >= 0)
+		{
+			if (type >= 0 && type <= 2)
+				this.type = type;
 			this.start = start;
 			this.end = end;
 		}
@@ -24,24 +28,41 @@ public class TextSpan {
 	// TextSpan的结束索引
 	private int end = 0;
 
+	// 获取文本类型
+	public void setType(int type)
+	{
+		if (type >= 0 && type <= 2)
+			this.type = type;
+	}
+
+	// 获取文本类型
+	public int getType()
+	{
+		return type;
+	}
+
 	// 获取起始索引
-	public int getStart() {
+	public int getStart()
+	{
 		return start;
 	}
 
 	// 设置起始索引
-	public void setStart(int start) {
+	public void setStart(int start)
+	{
 		if (start >= 0)
 			this.start = start;
 	}
 
 	// 获取结束索引
-	public int getEnd() {
+	public int getEnd()
+	{
 		return end;
 	}
 
 	// 设置结束索引
-	public void setEnd(int end) {
+	public void setEnd(int end)
+	{
 		if (end >= 0)
 			this.end = end;
 	}
@@ -50,19 +71,21 @@ public class TextSpan {
 
 	// toString
 	@Override
-	public String toString() {
+	public String toString()
+	{
 		// 清空
 		sb.delete(0, sb.length());
-		switch (type) {
-		case TextSpan.TYPE_LINE:
-			sb.append("(line)");
-			break;
-		case TextSpan.TYPE_TAB:
-			sb.append("(tab)");
-			break;
-		default:
-			sb.append("(text)");
-			break;
+		switch (type)
+		{
+			case TextSpan.TYPE_LINE:
+				sb.append("(line)");
+				break;
+			case TextSpan.TYPE_TAB:
+				sb.append("(tab)");
+				break;
+			default:
+				sb.append("(text)");
+				break;
 		}
 
 		sb.append("(");
@@ -74,10 +97,12 @@ public class TextSpan {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(Object obj)
+	{
 		if (obj == null)
 			return false;
-		if (obj instanceof TextSpan) {
+		if (obj instanceof TextSpan)
+		{
 			TextSpan span = (TextSpan) obj;
 			if (this.type != span.type)
 				return false;
@@ -88,7 +113,9 @@ public class TextSpan {
 
 			// 否则则认为相等
 			return true;
-		} else {
+		}
+		else
+		{
 			return false;
 		}
 	}
